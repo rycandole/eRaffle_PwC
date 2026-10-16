@@ -1,0 +1,33 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  position  String?
+  group     String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("tblUsers")
+}
+
+model UserWinner {
+  id          Int      @id @default(autoincrement())
+  timestamp   DateTime @default(now())
+  name        String
+  email       String
+  group       String?
+  position    String?
+  prize       String?
+  batchNumber Int?     @map("batch_number")
+
+  @@map("tblUserWinner")
+}

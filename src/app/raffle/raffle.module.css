@@ -1,0 +1,422 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Playfair+Display:wght@500;600;700&display=swap");
+
+.contents {
+  --gold: #e8b64a;
+  --gold-soft: #c99a3c;
+  --gold-line: #d9a53f;
+  --cream: #fff8ec;
+
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #0a0600 url("/stage-bg.png") center bottom / cover no-repeat;
+}
+
+.elementsContainer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem 1.5rem 12vh;
+  width: 100%;
+  max-width: 980px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  height: 180px;
+  width: 260px;
+}
+
+/* Title block */
+.title {
+  margin: 0;
+}
+
+.stellar {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  line-height: 1.05;
+  margin: 0;
+  background: linear-gradient(180deg, #f6d27a 0%, #d9a53f 55%, #b9812a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(255, 190, 80, 0.25);
+}
+
+.subtitle {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  margin: 0.9rem 0 0;
+}
+
+/* Diamond divider */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0 1.4rem;
+}
+
+.divider span {
+  width: clamp(60px, 10vw, 110px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-line));
+}
+
+.divider span:last-child {
+  transform: scaleX(-1);
+}
+
+.divider i {
+  width: 9px;
+  height: 9px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px rgba(232, 182, 74, 0.7);
+}
+
+.announce {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.85rem, 1.6vw, 1.15rem);
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+}
+
+/* Name frame */
+.headerNamesWrapper {
+  margin: 1.6rem auto 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.headerNamesBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(760px, 100%);
+  padding: 1.6rem 2rem 1.4rem;
+  border: 2px solid var(--gold-line);
+  border-radius: 10px;
+  background: rgba(10, 6, 0, 0.72);
+  box-shadow:
+    0 0 28px rgba(232, 182, 74, 0.35),
+    inset 0 0 22px rgba(232, 182, 74, 0.12);
+  cursor: pointer;
+  color: var(--gold);
+}
+
+.headerNamesContainer {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.headerNames {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: clamp(1.75rem, 4.2vw, 3.1rem);
+  line-height: 1.15;
+  color: #fff;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.congratsLine {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0.8rem 0 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.congratsLine.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Laurels */
+.laurel {
+  flex: none;
+  width: clamp(28px, 4.5vw, 46px);
+  height: auto;
+  color: var(--gold);
+}
+
+.laurelFlip {
+  transform: scaleX(-1);
+}
+
+/* Tagline sits on the podium */
+.tagline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 11vh;
+  z-index: 1;
+  text-align: center;
+  margin: 0;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.7rem, 1.3vw, 0.95rem);
+  letter-spacing: 0.1em;
+  color: var(--gold-soft);
+}
+
+/* Winner overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: none;
+  background: #0A0600 url("/stage-bg.png") center bottom / cover no-repeat;
+}
+
+.overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55));
+  z-index: 0;
+}
+
+.overlay.open {
+  display: block;
+}
+
+.overlay canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.overlayLogo {
+  height: 110px;
+  width: 160px;
+  margin-bottom: 0.5rem;
+}
+
+.overlayBody {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.confettiImg {
+  width: 100px;
+  margin-bottom: 1rem;
+}
+
+.congrats {
+  color: var(--gold);
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  margin: 0 0 1.6rem;
+}
+
+/* Framed laurel + name box — mirrors .headerNamesBox so overlay matches stage styling */
+.overlayNameBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  width: min(900px, 92vw);
+  padding: clamp(1.6rem, 4vw, 2.6rem) clamp(1.5rem, 5vw, 3rem);
+  border: 2px solid var(--gold-line);
+  border-radius: 10px;
+  background: rgba(10, 6, 0, 0.72);
+  box-shadow:
+    0 0 36px rgba(232, 182, 74, 0.4),
+    inset 0 0 24px rgba(232, 182, 74, 0.14);
+}
+
+.overlayNameBox .laurel {
+  width: clamp(32px, 5.5vw, 56px);
+  flex: none;
+}
+
+.winnerName {
+  color: #fff;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 6vw, 4.25rem);
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 0 30px rgba(255, 200, 100, 0.4);
+  line-height: 1.1;
+}
+
+.overlayTagline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6vh;
+  z-index: 2;
+  text-align: center;
+  margin: 0;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.7rem, 1.3vw, 0.95rem);
+  letter-spacing: 0.1em;
+  color: var(--gold-soft);
+}
+
+.close {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  z-index: 3;
+  display: none;
+  color: var(--gold);
+  filter: drop-shadow(0 0 8px rgba(232, 182, 74, 0.5));
+}
+
+.close.open {
+  display: block;
+}
+
+@media (max-width: 560px) {
+  .headerNamesBox {
+    padding: 1.2rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .overlayNameBox {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+
+.flipCard {
+  position: relative;
+  width: 100%;
+  min-height: clamp(3rem, 6vw, 5rem);
+  perspective: 1400px;
+}
+
+.flipCardInner {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  transform-style: preserve-3d;
+}
+
+.flipCardInner.flipped {
+  transform: rotateX(180deg);
+}
+
+.flipFace {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.flipFaceBack {
+  transform: rotateX(180deg);
+}
+
+.drawingLabel {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin: 0;
+}
+
+.suspenseDots {
+  display: flex;
+  gap: 0.6rem;
+}
+
+
+@keyframes suspensePulse {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.groupLabel {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin: 0;
+}
+
+.groupReveal {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin: 0;
+  animation: groupPop 3s ease;
+}
+
+@keyframes groupPop {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.hint {
+  margin: 0.9rem 0 0;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(0.75rem, 1.3vw, 0.9rem);
+  letter-spacing: 0.08em;
+  color: var(--gold-soft);
+}

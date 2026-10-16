@@ -1,0 +1,396 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+
+.page {
+  --gold: #ffd24d;
+  --gold-deep: #e8a317;
+  --ink: #1a0a3d;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(ellipse at 50% 0%, rgba(120, 60, 255, 0.55), transparent 55%),
+    linear-gradient(170deg, #2a0a5e 0%, #1b0845 50%, #0b0420 100%);
+}
+
+.page canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.page canvas.open {
+  opacity: 1;
+}
+
+/* Spotlight beams from the top */
+.rays {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    conic-gradient(from 200deg at 15% -5%, transparent 0 8%, rgba(160, 100, 255, 0.28) 10%, transparent 14%),
+    conic-gradient(from 160deg at 85% -5%, transparent 0 8%, rgba(60, 200, 255, 0.22) 10%, transparent 14%),
+    conic-gradient(from 172deg at 50% -10%, transparent 0 6%, rgba(255, 215, 0, 0.16) 8%, transparent 11%);
+  filter: blur(6px);
+}
+
+.sparkleLayer {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(white 1px, transparent 1px),
+    radial-gradient(rgba(255, 215, 0, 0.6) 1px, transparent 1px);
+  background-size: 160px 160px, 220px 220px;
+  background-position: 0 0, 80px 120px;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* Floor glow under the banner */
+.stageGlow {
+  position: absolute;
+  left: 50%;
+  bottom: -120px;
+  width: 900px;
+  height: 320px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(255, 190, 40, 0.55), rgba(255, 120, 0, 0.15) 45%, transparent 70%);
+  z-index: 0;
+}
+
+.title {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.title h1 {
+  color: #fff;
+  font-weight: 800;
+  font-size: 2.5rem;
+  margin: 0;
+  text-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+}
+
+.title p {
+  color: #ffd76a;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin: 0.4rem 0 0;
+  text-transform: uppercase;
+}
+
+.stage {
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------- Wheel ---------- */
+.wheel {
+  --size: 340px;
+  position: relative;
+  width: calc(var(--size) + 44px);
+  height: calc(var(--size) + 44px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gold pointer at the top */
+.pointer {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-top: 40px solid var(--gold);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+  z-index: 4;
+}
+
+/* Marquee bulbs around the rim */
+.bulbs {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.bulb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff, #ffe27a 55%, #e8a317);
+  box-shadow: 0 0 10px 3px rgba(255, 215, 0, 0.8);
+  transform: rotate(calc(var(--i) * 18deg)) translateY(calc((var(--size) + 22px) / -2));
+  animation: twinkle 1.6s infinite ease-in-out;
+  animation-delay: calc(var(--i) * -0.08s);
+}
+
+.bulb:nth-child(even) {
+  animation-direction: reverse;
+}
+
+.bulbChase {
+  animation-duration: 0.35s;
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.ring {
+  position: relative;
+  z-index: 2;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, #3a1670, #1a0a3d 75%);
+  border: 8px solid var(--gold);
+  box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.25), 0 0 50px rgba(255, 215, 0, 0.45),
+    inset 0 0 40px rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.idlePrompt {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+/* Slot-machine reel */
+.reel {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 56px;
+  /* leave room for the banner overlap */
+  width: 100%;
+  text-align: center;
+  -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+}
+
+.reelHold .reelCenter {
+  animation: holdPulse 0.45s infinite alternate;
+}
+
+@keyframes holdPulse {
+  from {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+  }
+
+  to {
+    box-shadow: 0 0 28px rgba(255, 215, 0, 0.95);
+  }
+}
+
+.reelRow {
+  width: 62%;
+  margin: 4px auto;
+  padding: 7px 0;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.reelCenter {
+  width: 88%;
+  margin: 8px auto;
+  padding: 10px 1rem;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #fff, #fff4cf);
+  border: 2px solid var(--gold);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.55);
+}
+
+/* Suspense: no name in the center row, just a pulsing "?" */
+.reelMystery {
+  background: linear-gradient(180deg, #ffe58a, #ffc933);
+  color: #4a2b00;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+/* Group shown in the center row once the winner's group is revealed */
+.reelGroup {
+  background: linear-gradient(180deg, #ffe58a, #ffc933);
+  letter-spacing: 0.04em;
+  animation: groupPop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+@keyframes groupPop {
+  from {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ---------- Banner ---------- */
+.banner {
+  position: relative;
+  z-index: 4;
+  width: 440px;
+  max-width: 92vw;
+  height: 110px;
+  margin-top: -64px;
+  perspective: 1200px;
+  color: #4a2b00;
+}
+
+.flipInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.9s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flipInner.flipped {
+  transform: rotateX(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffe58a, #ffc933 55%, #e8a317);
+  border: 3px solid #fff3b8;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.35), 0 12px 40px rgba(255, 170, 0, 0.55),
+    inset 0 2px 6px rgba(255, 255, 255, 0.7);
+}
+
+.faceBack {
+  transform: rotateX(180deg);
+}
+
+.bannerIdle {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+}
+
+.suspense {
+  display: flex;
+  gap: 10px;
+}
+
+.suspense span {
+  width: 14px;
+  height: 14px;
+  background: #4a2b00;
+  border-radius: 50%;
+  animation: pulseDot 1s infinite ease-in-out;
+}
+
+.suspense span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.suspense span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulseDot {
+
+  0%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.winnerBadge {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.winnerName {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  padding: 0 1rem;
+  color: var(--ink);
+}
+
+.hint {
+  position: relative;
+  margin-top: 1.25rem;
+  color: #ffd76a;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  z-index: 1;
+}
+
+.footer {
+  margin-top: 1.5rem;
+  z-index: 1;
+}
+
+.logo {
+  height: 44px;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .bulb,
+  .reelHold .reelCenter {
+    animation: none;
+  }
+}

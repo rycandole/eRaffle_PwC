@@ -1,0 +1,422 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.page {
+  min-height: 100vh;
+  background: #f6f6fb;
+  padding: 32px 16px;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 4px 0 0;
+}
+
+.participantsBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eceaf9;
+  color: #6d5bd0;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.drawCard {
+  background: #fff;
+  border: 1px solid #e8e8f2;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.drawCardHeader {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.iconBox {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #eceaf9;
+  color: #6d5bd0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drawCardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 2px;
+}
+
+.drawCardSubtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 16px;
+  align-items: end;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 6px;
+}
+
+.numberInput,
+.textInput {
+  border: 1px solid #e2e2ee;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #1a1a2e;
+  background: #fafafe;
+}
+
+.numberInput:focus,
+.textInput:focus {
+  outline: none;
+  border-color: #6d5bd0;
+}
+
+.hint {
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 6px 0 0;
+}
+
+.pickButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #6d5bd0;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 42px;
+  white-space: nowrap;
+}
+
+.pickButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.errorText {
+  color: #d33;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(340px, 1.4fr);
+  gap: 20px;
+}
+
+@media (max-width: 760px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #e8e8f2;
+  border-radius: 16px;
+  padding: 20px;
+  min-height: 260px;
+}
+
+.panelHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.panelTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 12px;
+}
+
+.totalBadge {
+  background: #eceaf9;
+  color: #6d5bd0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 36px 12px;
+  color: #6b7280;
+}
+
+.emptyIconCircle {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: #f1f1f7;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.emptyTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 4px;
+}
+
+.emptyText {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0;
+  max-width: 260px;
+}
+
+.winnerResult {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.winnerMeta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.winnerPrize {
+  background: #fff7e6;
+  color: #a16207;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.winnerBatch {
+  background: #eceaf9;
+  color: #6d5bd0;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.winnerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.winnerListItem {
+  display: flex;
+  flex-direction: column;
+  background: #fafafe;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.winnerName {
+  font-weight: 700;
+  color: #1a1a2e;
+  font-size: 14px;
+}
+
+.winnerEmail {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.winnerGroup {
+  font-size: 12px;
+  color: #6d5bd0;
+  margin-top: 2px;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table th {
+  text-align: left;
+  color: #9ca3af;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.table td {
+  padding: 10px 10px;
+  border-bottom: 1px solid #f3f3f8;
+  color: #1a1a2e;
+}
+
+.tipsBox {
+  background: #f3f1fb;
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+
+.tipsHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6d5bd0;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.tipsList {
+  margin: 0;
+  padding-left: 20px;
+  color: #4b5563;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
